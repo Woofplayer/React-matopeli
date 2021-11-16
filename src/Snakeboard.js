@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Snakeboard.css";
 
 const SnakeBoard = ({ points, setPoints }) => {
@@ -22,8 +22,36 @@ const SnakeBoard = ({ points, setPoints }) => {
     return initialRows;
   }
 
+  const [ rows,setRows ] = useState(getInitialRows())
+
+  useEffect(() => {
+    if (width >= 10 && width <= 100 && height >= 10 && height<= 100) {
+      setRows(getInitialRows())
+    }
+  }, [width, height])
+
+  const displayRows = rows.map((row, i) => (
+    <div className="Snake-row" key={i}>
+      {row.map((tile, j) => (
+        <div className={`tile ${tile}`} key={`${i}-${j}`}/> 
+      ))}
+    </div>
+  ))
+
+  const getObstacles = () => [
+    {
+      name: "tyhja",
+      location: []
+    },
+    {
+      name: "oma",
+      location: [{x: 6, y: 15}, {x: 1, y: 10}, {x: 5, y: 5}]
+    }
+  ]
+
+  console.log('rivit', rows);
   return (
-    <div>
+    <div className="Snake-board">
         {!startGame && (
             <div>
                 <div> Pelilaudan koko on nyt {width} ruutua. </div>
@@ -53,6 +81,7 @@ const SnakeBoard = ({ points, setPoints }) => {
 
             </div>
         )}
+        {startGame && displayRows}
     </div>
   )
 };
