@@ -2,24 +2,43 @@
     color: red;
     font-size: large;
     font-weight: bold;
-}
-
-.Snake-board {
+  }
+  .Snake-board {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: 30px;
-}
-
-.Snake-row {
+  }
+  .Snake-row {
     display: flex;
     flex-direction: row;
-}
-
-.tile {
+  }
+  .tile {
     position: relative;
     width: 10px;
     height: 10px;
-}
+  }
+  
+  .blank {
+    background: white
+  }
+  
+  .snake {
+    background: olive;
+  }
+  
+  .obstacle {
+    background: black;
+  }
+  
+  .food {
+    background: white;
+  }
+
+  .food:after {
+      position: absolute;
+      font-size: 10px;
+      content: "🍔";
+  }
